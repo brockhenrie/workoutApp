@@ -1,0 +1,34 @@
+.example-form-field {
+  width: 200px;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid black;
+
+
+}
+
+.child {
+ width: 200px;
+ height: 200px;
+}
+
+#child1 {
+  // flex: 1;
+  background-color: red;
+}
+
+#child2 {
+  // flex: 2;
+  background-color: green;
+}
+
+#child3 {
+  // flex: 1;
+  background-color: blue;
+}
