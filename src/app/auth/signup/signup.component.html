@@ -1,25 +1,46 @@
-<section>
-  <form>
-    <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label></mat-label>
-      <input matInput type="email" [(ngModel)]="value">
-      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
+<section class="signup-form" >
+  <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-form-field class="example-form-field" >
+      <mat-label>Email</mat-label>
+      <input
+       matInput
+       type="email"
+       name="email"
+       placeholder="Email@blank.com"
+       ngModel
+       email
+       required
+       #emailInput="ngModel">
+       <mat-error *ngIf="emailInput.hasError('required') ">Field must not be empty</mat-error>
+       <mat-error *ngIf="!emailInput.hasError('required') ">E-mail is invalid</mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label></mat-label>
-      <input matInput type="password" [(ngModel)]="value">
-      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
+    <mat-form-field class="example-form-field" >
+      <mat-label>Password</mat-label>
+      <input
+       matInput
+       type="password"
+       name="password"
+       ngModel
+       password
+       required
+       minlength="8"
+       #pwInput="ngModel">
+       <mat-error>Has to be 8 character long</mat-error>
     </mat-form-field>
-    <section id="container">
-      <div id="child1" class='child'></div>
-      <div id="child2" class='child'></div>
-      <div id="child3" class='child'></div>
-    </section>
 
+    <mat-form-field >
+      <mat-label>Birthday</mat-label>
+      <input matInput [matDatepicker]="picker" ngModel name="dateOfBirth" [max]="maxDate" #dateOfBirthInput='ngModel' required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dateOfBirthInput.hasError('required')">Required</mat-error>
+    </mat-form-field>
+
+    <mat-checkbox ngModel name="agree" color="primary" required>Agree to Terms and Conditions</mat-checkbox>
+
+
+    <button mat-raised-button type="submit" color="primary">SignUp</button>
+    <!-- <button mat-raised-button color="secondary" (click)='f.reset()' >Reset</button> -->
   </form>
 </section>
